@@ -1,17 +1,10 @@
-import { observable } from 'mobx';
+import { observable, computed } from 'mobx';
 
-class AppState {
-  @observable timer = 0;
 
-  constructor() {
-    setInterval(() => {
-      this.timer += 1;
-    }, 1000);
-  }
-
-  resetTimer() {
-    this.timer = 0;
-  }
+export class UserList {
+    @observable users = [];
+    @computed get siteAdminUserCount() {
+        return this.users.filter(user => user.site_admin).length;
+    }
 }
 
-export default AppState;
